@@ -1,8 +1,11 @@
 import { FeedbackUseCase } from "./submit-feedbacks-use-case";
 
+const createFeedbackSpy = jest.fn();
+const sendMailSpy = jest.fn();
+
 const submitFeedback = new FeedbackUseCase(
-  {create: async () => {}},
-  {sendMail: async () => {}}
+  {create: createFeedbackSpy},
+  {sendMail: sendMailSpy}
 )
 
 
@@ -13,6 +16,9 @@ describe('Submit feedback', () => {
       comment: 'example comment',
       screanshot: "data:image/png;base64"
     })).resolves.not.toThrow()
+
+    expect(createFeedbackSpy).toHaveBeenCalled();
+    expect(sendMailSpy).toHaveBeenCalled();
   });
 
   it('should not be able to submit a feedback without type', async () => {   
