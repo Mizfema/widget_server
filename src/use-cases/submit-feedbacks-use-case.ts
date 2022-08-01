@@ -42,6 +42,7 @@ export class FeedbackUseCase {
         `<div style="font-family: sans-serif; font-size: 16px; color: #111;" >`,
         `<p>Tipo de Feedback: ${type}</p>`,
         `<p>Comentário: ${comment} </p>`,
+        screanshot ? `<img src = "${screanshot}"/>`: null,
         `</div>`,
       ].join('\n')
      })
